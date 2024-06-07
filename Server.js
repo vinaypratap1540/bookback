@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: ["http://localhost:3000"],
         methods: ["GET", "POST", "PUT", "DELETE"]
     }
 });
@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
 
 app.post('/add-book', (req, res) => {
     const book = req.body;
-    book.id = books.length+1;
+    book.id = books.length + 1;
     books.push(book);
     broadcastUpdate('BookAdded', book);
     res.status(201).json(book);
@@ -63,7 +63,8 @@ app.delete('/delete-book/:id', (req, res) => {
     }
 });
 
-server.listen(30001, () => {
-    console.log('Server is listening on port 30001');
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
 });
 
