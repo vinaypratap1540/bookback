@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: ["http://localhost:3000"],
+        origin: "https://book-store-08uy.onrender.com",
         methods: ["GET", "POST", "PUT", "DELETE"]
     }
 });
@@ -63,8 +63,10 @@ app.delete('/delete-book/:id', (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
+// Use the port provided by the environment or default to 30001
+const PORT = process.env.PORT || 30001;
 server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
+
 
