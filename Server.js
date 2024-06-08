@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: "https://book-management-fa1b.onrender.com/",
+        origin: "https://book-management-fa1b.onrender.com",
         methods: ["GET", "POST", "PUT", "DELETE"]
     }
 });
